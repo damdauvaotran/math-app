@@ -34,23 +34,19 @@ public class UserController {
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "registration";
         }
-
-        System.out.println(userForm.getUsername());
-
         userService.save(userForm);
 
-        securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
+//        securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
 
-        return "redirect:/welcome";
+        return "/login";
     }
 
-
     @GetMapping("/login")
-    public  String login(Model model, String error, String logout){
-        if (error!= null){
+    public String login(Model model, String error, String logout) {
+        if (error != null) {
             model.addAttribute("error", "Your username and password is invalid.");
         }
 

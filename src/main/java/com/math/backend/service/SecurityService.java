@@ -2,7 +2,6 @@ package com.math.backend.service;
 
 import org.springframework.stereotype.Service;
 
-
 public interface SecurityService {
     String findLoggedInUsername();
 
